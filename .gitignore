@@ -142,6 +142,7 @@ cython_debug/
 
 # VS Code
 .vscode/
+.vscode/launch.json
 *.code-workspace
 
 # macOS

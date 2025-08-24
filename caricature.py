@@ -16,7 +16,7 @@ load_dotenv()
 API_KEY = os.getenv("OPENAI_API_KEY")
 API_URL = "https://api.openai.com/v1/images/edits"
 
-logger.info("캐리커처 모듈 초기화 완료")
+logger.info(f"캐리커처 모듈 초기화 완료: OPENAI_API_KEY:{API_KEY}")
 
 def center_square(path, out_size=1024):
     """입력 이미지를 센터 크롭 후 1024x1024로 리사이즈"""
@@ -51,9 +51,12 @@ def make_caricature(input_path, out_path="caricature.png", size="1024x1024"):
     
     # 스타일 프롬프트 (핵심)
     prompt = (
-        "A simplified colored-pencil caricature of the person in the photo. "
-        "Clean contour lines, soft cross-hatching, warm umber/sienna with a bit of blue, "
-        "textured off-white paper background. Exaggerate smile lines gently, keep likeness."
+        "색연필 일러스트, 따뜻한 일상 그림체, 손그림 느낌,  " 
+        "종이 질감이 보이는 부드러운 채색, 웹툰 스타일, "
+        "파스텔톤 색감, 스케치북에 그린 듯한 느낌 "
+        "사진 속 인물의 단순화된 캐리커처. "
+        "깔끔한 윤곽선, 따뜻한 umber/sienna 색상, "
+        "밝고 긍정적이고 즐겁고 따뜻한 느낌은 최대한 강조. "
     )
     logger.info(f"프롬프트: {prompt[:100]}...")
 
@@ -116,7 +119,8 @@ def make_caricature(input_path, out_path="caricature.png", size="1024x1024"):
 if __name__ == "__main__":
     # 사용 예: python caricature.py
     logger.info("캐리커처 스크립트 직접 실행")
-    file_path_name = os.path.join("img", "yun1.jpg")
+    print("OPENAI_API_KEY:", os.getenv('OPENAI_API_KEY'))
+    file_path_name = os.path.join("img", "yun2.jpg")
     logger.info(f"테스트 이미지: {file_path_name}")
     
     try:
